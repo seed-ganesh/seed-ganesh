@@ -193,6 +193,8 @@ const Cart = ({ homeClick, COD, ...other }) => {
                         params: data && data.body
                     }
                     paytmSecureServerPost(securePayload)
+                    localStorage.removeItem('productInfo')
+                    localStorage.removeItem('addressDetails')
                 }).catch(err => {
                     setLoader(false)
                     setApiResp({
@@ -249,7 +251,9 @@ const Cart = ({ homeClick, COD, ...other }) => {
             </div>
             <div className="row text-center mt-5">
                 <div className="backHome col-2 col-md-2 col-xs-2">
-                    <span role="presentation" onClick={() => homeClick('home')}><b>{">"} Back Home</b></span>
+                    <span role="presentation" onClick={() => homeClick('home')}><b>{">"}Home</b></span>
+                    <br/>
+                    <br/>
                 </div>
             </div>
 

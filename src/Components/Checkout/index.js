@@ -153,7 +153,7 @@ const Cart = ({ homeClick, COD, ...other }) => {
             return
         } else if (type === 'submit') {
             setLoader(true)
-            if (radioValue && radioValue === 'COD' && COD) {
+            if (radioValue && radioValue === 'COD') {
                 localStorage.removeItem('productInfo')
                 localStorage.removeItem('addressDetails')
                 const orderID = uuidv4()
@@ -252,8 +252,8 @@ const Cart = ({ homeClick, COD, ...other }) => {
             <div className="row text-center mt-5">
                 <div className="backHome col-2 col-md-2 col-xs-2">
                     <span role="presentation" onClick={() => homeClick('home')}><b>{">"}Home</b></span>
-                    <br/>
-                    <br/>
+                    <br />
+                    <br />
                 </div>
             </div>
 
@@ -269,7 +269,7 @@ const Cart = ({ homeClick, COD, ...other }) => {
                                     display: 'inline-block'
                                 }} onClick={() => homeClick('home')}>
                                     <br />
-                                    Go Back Home
+                                    Home
                                 </p>
                             </div>
                         )}
@@ -286,7 +286,7 @@ const Cart = ({ homeClick, COD, ...other }) => {
                                 <FormLabel component="legend">Payment Mode</FormLabel>
                                 <RadioGroup name="PaymentMode" value={radioValue} onChange={changeRadioValue}>
                                     <FormControlLabel value="Card/NetBanking" control={<Radio />} label="Card/NetBanking" />
-                                    <FormControlLabel value="disabled" disabled={!COD} control={<Radio />} label="COD" />
+                                    {COD && <FormControlLabel value="disabled" disabled={!COD} control={<Radio />} label="COD" />}
                                 </RadioGroup>
                             </FormControl>
                             <hr className="my-4" />

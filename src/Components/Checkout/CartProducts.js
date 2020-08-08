@@ -5,7 +5,9 @@ import CartItem from './CartItem';
 const CartProducts = ({ addressData, inputQuantityValue, handleChangeInput, removeHandler, cartItems }) => {
     return (
         <div>
-            <div className="card card-body border-0">
+            <div style={{
+                fontFamily: "Roboto,Arial,sans-serif"
+            }} className="card card-body border-0">
                 <h3 className="mb-1 text-center">{Object.keys(cartItems).length > 0 && cartItems[Object.keys(cartItems)[0]].productTitle}</h3>
                 {
                     Object.keys(cartItems).map(product => (

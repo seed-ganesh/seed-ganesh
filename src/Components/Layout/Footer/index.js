@@ -15,7 +15,7 @@ const Footer = props => {
                             color: 'white',
                             textDecoration: 'none',
                             fontSize: '19px',
-                            fontFamily: 'Actor'
+                            fontFamily: 'Roboto,Arial,sans-serif'
                         }} >{linkContent.text}</a>
                     </div>
                 ) : (
@@ -26,7 +26,7 @@ const Footer = props => {
                                 color: 'white',
                                 fontSize: '19px',
                                 textDecoration: 'none',
-                                fontFamily: 'Actor'
+                                fontFamily: 'Roboto,Arial,sans-serif'
                             }} to={linkContent.link}>{linkContent.text}</Link>
                         </div>
                     ))}

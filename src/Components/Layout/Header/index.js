@@ -31,12 +31,12 @@ const Header = props => {
                             {links.map(linkContent => linkContent.text === 'Product' && !isContactUs ? (
                                 <li><a role="presentation" style={{
                                     fontSize: '19px',
-                                    fontFamily: 'Actor'
+                                    fontFamily: 'Roboto,Arial,sans-serif'
                                 }} onClick={productMenuClick}>{linkContent.text}</a></li>
                             ) : !isContactUs && (
                                 <li><Link onClick={() => setHamClass('')} style={{
                                     fontSize: '19px',
-                                    fontFamily: 'Actor'
+                                    fontFamily: 'Roboto,Arial,sans-serif'
                                 }} to={linkContent.link}>{linkContent.text}</Link></li>
                             ))}
                         </>
@@ -45,12 +45,12 @@ const Header = props => {
                                 {links.map(linkContent => linkContent.text === 'Product' ? (
                                     <li><a style={{
                                         fontSize: '19px',
-                                        fontFamily: 'Actor'
+                                        fontFamily: 'Roboto,Arial,sans-serif'
                                     }} onClick={productMenuClick}>{linkContent.text}</a></li>
                                 ) : (
                                         <li><Link onClick={() => setHamClass('')} style={{
                                             fontSize: '19px',
-                                            fontFamily: 'Actor'
+                                            fontFamily: 'Roboto,Arial,sans-serif'
                                         }} to={linkContent.link}>{linkContent.text}</Link></li>
                                     )
                                 )}

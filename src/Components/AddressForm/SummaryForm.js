@@ -27,7 +27,7 @@ const SummaryForm = props => {
                         <div className="row" style={{
                             fontSize: '21px',
                             textAlign: 'center',
-                            fontFamily: 'fantasy'
+                            fontFamily: 'Roboto,Arial,sans-serif'
                         }}>
                             <div className="col-6 col-md-6">
                                 <p>Size</p>
@@ -54,7 +54,7 @@ const SummaryForm = props => {
                         <div className="row" style={{
                             fontSize: '21px',
                             textAlign: 'center',
-                            fontFamily: 'fantasy'
+                            fontFamily: 'Roboto,Arial,sans-serif'
                         }}>
                             <div className="col-6 col-md-6">
                                 <p>Total Price</p>
@@ -69,7 +69,7 @@ const SummaryForm = props => {
                         <div className="row" style={{
                             fontSize: '21px',
                             textAlign: 'center',
-                            fontFamily: 'fantasy'
+                            fontFamily: 'Roboto,Arial,sans-serif'
                         }}>
                             <div className="col-6 col-md-6">
                                 <p>Payment Mode</p>

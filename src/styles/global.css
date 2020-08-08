@@ -23,7 +23,7 @@ body {
     background-color: transparent;
     display: -webkit-box;
     display: -ms-flexbox;
-    display: flex;
+    display: block;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     -webkit-box-align: center;
@@ -35,6 +35,7 @@ body {
 .containerMobile {
     height: 60px;
     background-color: #cadc43;
+    background-image: linear-gradient(-90deg, #cadc43, white); 
     display: -webkit-box;
     display: -ms-flexbox;
     -ms-flex-wrap: wrap;
@@ -67,9 +68,9 @@ body {
 }
 
 .containers .navbar {
+    top: -61px;
     display: -webkit-box;
     display: -ms-flexbox;
-    margin-bottom: 60px;
     display: flex;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
@@ -110,12 +111,12 @@ body {
 }
 
 .containerMobile .navbar {
+     top: -61px;
     display: -webkit-box;
     display: -ms-flexbox;
     margin-bottom: 60px;
     display: flex;
     position: relative;
-    top: -119px;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     justify-content: flex-end;
@@ -142,7 +143,7 @@ body {
 }
 
 .logoAnchor {
-    max-height: 120px;
+    height: 60px;
     z-index: 99999999;
     width: auto;
     background-color: transparent;
@@ -152,7 +153,7 @@ body {
     text-align: center;
     width: 100%;
     font-size: 24px;
-    fontFamily: 'Roboto,Arial,sans-serif'
+    font-family: 'Roboto,Arial,sans-serif'
 }
 
 .containers .navbar ul li a {
@@ -190,7 +191,7 @@ body {
     float: right;
     margin-right: 130px;
     padding-top: 10px;
-    fontFamily: 'Roboto,Arial,sans-serif';
+    font-family: 'Roboto,Arial,sans-serif';
     font-size: 20px;
 }
 
@@ -426,7 +427,7 @@ body {
 }
 
 .productContent {
-   fontFamily: 'Roboto,Arial,sans-serif';
+   font-family: 'Roboto,Arial,sans-serif';
     margin-top: 150px;
     text-align: center;
 }
@@ -457,7 +458,7 @@ body {
     border-width: 1px;
     border-radius: 50px;
     min-width: 325px;
-    fontFamily: 'Roboto,Arial,sans-serif';
+    font-family: 'Roboto,Arial,sans-serif';
     font-size: 17px;
     line-height: 17px;
     font-weight: 700;
@@ -489,7 +490,7 @@ body {
     border-width: 1px;
     border-radius: 50px;
     min-width: 325px;
-    fontFamily: 'Roboto,Arial,sans-serif';
+    font-family: 'Roboto,Arial,sans-serif';
     font-size: 17px;
     line-height: 17px;
     font-weight: 700;
@@ -623,7 +624,7 @@ body {
 .removeContainerButton {
     text-transform: uppercase;
     color: black;
-    fontFamily: 'Roboto,Arial,sans-serif';
+    font-family: 'Roboto,Arial,sans-serif';
     box-shadow: none;
     outline: 0;
     font-size: 16px;
@@ -716,6 +717,19 @@ body {
 }
 
 @media only screen and (max-width: 768px) {
+    .containers {
+        height: 0px;
+        background-color: transparent;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        width: 100%;
+        align-items: center;
+    }
     .selectContainer {
         margin-bottom: 0px;
         padding-left: 0px;
@@ -795,7 +809,7 @@ body {
         display: flex;
     }
     .productContent {
-       fontFamily: 'Roboto,Arial,sans-serif';
+       font-family: 'Roboto,Arial,sans-serif';
         margin-top: 50px;
         text-align: center;
         padding-right: 0px;
@@ -1027,7 +1041,7 @@ body {
     font-weight: 500;
     margin-top: 20px;
     margin-bottom: 10px;
-    fontFamily: 'Roboto,Arial,sans-serif';
+    font-family: 'Roboto,Arial,sans-serif';
     color: #212121;
 }
 

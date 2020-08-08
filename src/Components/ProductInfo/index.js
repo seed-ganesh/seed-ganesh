@@ -8,7 +8,7 @@ const ProductInfo = props => {
             <h1>{products[0].productTitle}</h1>
             <div className="productPriceContainer">Price</div>
             <div className="productPriceValue"><b>₹ {products[0].productVariant[currentVariantIndex].productPrice}</b></div>
-            {isNotAvailable && <Alert severity="error">This product is not available!</Alert>}
+            {isNotAvailable && <Alert severity="error">This product is out of stock!</Alert>}
             <br />
             <div className="productDescription">
 

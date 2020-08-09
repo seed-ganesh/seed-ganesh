@@ -250,7 +250,7 @@ const Cart = ({ homeClick, COD, ...other }) => {
                 )}
             </div>
             <div className="row text-center mt-5">
-                <div className="backHome col-2 col-md-2 col-xs-2">
+                <div className="backHome col-1 col-md-1 col-xs-1">
                     <span role="presentation" onClick={() => homeClick('home')}><b>{">"}Home</b></span>
                     <br />
                     <br />

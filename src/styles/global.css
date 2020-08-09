@@ -7,6 +7,31 @@ body {
     margin: 0;
 }
 
+.containers {
+    height: 0px;
+    display: block;
+    background-color: #cadc43;
+    background-image: linear-gradient(-90deg, #cadc43, white);
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    width: 100%;
+    align-items: center;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 .productCartContainerArea {
     position: relative;
     display: inline-block;
@@ -18,24 +43,10 @@ body {
     cursor: pointer;
 }
 
-.containers {
-    height: 0px;
-    background-color: transparent;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: block;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    width: 100%;
-    align-items: center;
-}
-
 .containerMobile {
     height: 60px;
     background-color: #cadc43;
-    background-image: linear-gradient(-90deg, #cadc43, white); 
+    background-image: linear-gradient(-90deg, #cadc43, white);
     display: -webkit-box;
     display: -ms-flexbox;
     -ms-flex-wrap: wrap;
@@ -68,7 +79,7 @@ body {
 }
 
 .containers .navbar {
-    top: -61px;
+    top: -82px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -111,7 +122,7 @@ body {
 }
 
 .containerMobile .navbar {
-     top: -61px;
+    top: -80px;
     display: -webkit-box;
     display: -ms-flexbox;
     margin-bottom: 60px;
@@ -143,7 +154,7 @@ body {
 }
 
 .logoAnchor {
-    height: 60px;
+    height: 80px;
     z-index: 99999999;
     width: auto;
     background-color: transparent;
@@ -427,7 +438,7 @@ body {
 }
 
 .productContent {
-   font-family: 'Roboto,Arial,sans-serif';
+    font-family: 'Roboto,Arial,sans-serif';
     margin-top: 150px;
     text-align: center;
 }
@@ -809,7 +820,7 @@ body {
         display: flex;
     }
     .productContent {
-       font-family: 'Roboto,Arial,sans-serif';
+        font-family: 'Roboto,Arial,sans-serif';
         margin-top: 50px;
         text-align: center;
         padding-right: 0px;

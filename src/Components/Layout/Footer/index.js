@@ -33,9 +33,9 @@ const Footer = props => {
             </div>
             <div className="footerColumn2">
                 <div className="divider">
-                    <span className="officeAddress">Office Address:</span>
+                    <span className="officeAddress">Contact us</span>
                     <div className="fullOfficeAdd">
-                        XXX, YYY, ZZZ, Chennai-xxx
+                        9176636367
                     </div>
                 </div>
             </div>

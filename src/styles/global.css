@@ -7,6 +7,31 @@ body {
     margin: 0;
 }
 
+/* .slides .slick-prev .slick-next {
+    position: absolute;
+    top: 50%;
+} */
+
+.slides {
+    position: relative;
+}
+
+.slides .slick-next {
+    color: 'red';
+    right: 5%;
+}
+
+.slick-next:before, .slick-prev:before {
+    color: green !important;
+    margin-left: 20px;
+    z-index: 999999999;
+}
+
+
+/* .slides .slick-prev {
+    left: 5%;
+} */
+
 .containers {
     height: 0px;
     display: block;
@@ -287,7 +312,6 @@ body {
 }
 
 .imageGalleryContainer {
-    margin-top: 124px;
     display: flex;
     margin-left: 100px;
     flex-wrap: wrap;
@@ -298,7 +322,6 @@ body {
     max-width: 700px;
     margin-left: 10px;
     height: auto;
-    padding-bottom: 100px;
     order: 2;
     margin-top: 0px;
     display: flex;
@@ -326,6 +349,7 @@ body {
 }
 
 .selectContainer {
+    margin-top: 100px;
     display: flex;
     margin-bottom: 65px;
     padding-left: 150px;
@@ -350,7 +374,7 @@ body {
 .footerContent {
     background-color: #cadc43;
     width: 100%!important;
-    padding-top: 40px;
+    padding-top: 20px;
     height: 200px;
     text-align: center;
 }
@@ -399,7 +423,7 @@ body {
 
 .officeAddress {
     color: #878787;
-    font-size: 12px;
+    font-size: 22px;
     font-weight: 400;
 }
 
@@ -529,6 +553,7 @@ body {
 .fullOfficeAdd {
     width: 80px;
     color: white;
+    font-size: 25px;
     text-align: left;
     margin-top: 10px;
 }
@@ -742,7 +767,7 @@ body {
         align-items: center;
     }
     .selectContainer {
-        margin-bottom: 0px;
+        margin-bottom: 50px;
         padding-left: 0px;
     }
     .dynamicButtonContainer {
@@ -789,14 +814,16 @@ body {
     }
     .footerColumn2 {
         width: 100%;
+        font-size: 20px;
         text-align: center;
     }
     .divider {
+        border-top: 1px solid #454d5e;
+        padding-top: 21px;
+        padding-left: 0px;
         border-left: 0px;
-        padding-left: 0px
     }
     .imageGalleryContainer {
-        margin-top: 20px;
         justify-content: center;
         margin-left: 0;
     }

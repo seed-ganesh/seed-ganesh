@@ -49,7 +49,8 @@ const HomePage = props => {
         </div>
       ) : (
           <div style={{
-            position: 'relative'
+            position: 'relative',
+            marginBottom: '120px',
           }}>
             <div style={{
               position: 'relative'

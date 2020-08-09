@@ -16,7 +16,6 @@ const ProductImageGallery = props => {
     const [currentImage, setCurrentImage] = useState(products[0].productVariant[currentVariantIndex].variantImages[0])
     const isMobile = useResize()
     const localStorageValue = typeof window !== 'undefined' && window.localStorage && window.localStorage.getItem('productInfo')
-
     useEffect(() => {
         if (localStorageValue) {
             setFinalProductDetails(JSON.parse(localStorageValue))
@@ -79,26 +78,12 @@ const ProductImageGallery = props => {
     }
 
     const buyNowWrapperClick = () => {
-        console.log(finalProductDetails,'=====')
+        console.log(finalProductDetails, '=====')
         buyNowClick('checkout', finalProductDetails)
     }
     return (
         <Fragment>
             <div className="productColumn1">
-                <div className="imageGalleryContainer">
-                    <div className="imageDisplayArea">
-                        {isMobile ? <Banner {...{
-                            height: 'auto',
-                            desktopImage: currentImage.desktopImage,
-                            smartPhoneImage: currentImage.mobileImage,
-                        }} /> : <ImageMagnify
-                                src={currentImage && currentImage.desktopImage.file.url} alt='no Image'
-                            />}
-                    </div>
-                    <div className="thumbnailSlider">
-                        <Carousal currentImageCallback={currentImageCallbackFun} currentVariantIndex={currentVariantIndex} isProductCarousal settings={productImageSettings} carousalData={products[0].productVariant[currentVariantIndex] && products[0].productVariant[currentVariantIndex].variantImages} />
-                    </div>
-                </div>
                 <div className="selectContainer">
                     <span style={{
                         fontSize: '20px',
@@ -109,7 +94,7 @@ const ProductImageGallery = props => {
                             label: products[0].productVariant[currentVariantIndex] && products[0].productVariant[currentVariantIndex].variantName,
                             value: products[0].productVariant[currentVariantIndex] && products[0].productVariant[currentVariantIndex].variantName
                         }}
-                        menuPlacement='top'
+                        menuPlacement='bottom'
                         value={{
                             label: products[0].productVariant[currentVariantIndex] && products[0].productVariant[currentVariantIndex].variantName,
                             value: products[0].productVariant[currentVariantIndex] && products[0].productVariant[currentVariantIndex].variantName
@@ -122,6 +107,23 @@ const ProductImageGallery = props => {
                             changeVariant(products[0].productVariant.map(variant => variant.variantName).indexOf(selected.value))
                         }}
                     />
+                </div>
+                <div className="imageGalleryContainer">
+                    <div className="imageDisplayArea">
+                        {isMobile ? <Banner {...{
+                            height: 'auto',
+                            desktopImage: currentImage.desktopImage,
+                            smartPhoneImage: currentImage.mobileImage,
+                        }} /> : <ImageMagnify
+                                style={{
+                                    border: '1px solid black'
+                                }}
+                                src={currentImage && currentImage.desktopImage.file.url} alt='no Image'
+                            />}
+                    </div>
+                    <div className="thumbnailSlider">
+                        <Carousal currentImageCallback={currentImageCallbackFun} currentVariantIndex={currentVariantIndex} isProductCarousal settings={productImageSettings} carousalData={products[0].productVariant[currentVariantIndex] && products[0].productVariant[currentVariantIndex].variantImages} />
+                    </div>
                 </div>
             </div>
             <div className="productColumn2">

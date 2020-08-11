@@ -1,11 +1,17 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
+import addressDetails from '../../../Constants/Address'
+import useResize from '../../CustomHooks/useResize'
+
 const Footer = props => {
     const { links, productContentShowableFun } = props
+    const isMobile = useResize()
     return (
-        <div className="footerContent">
-            <div className="footerColumn">
+        <div className="footerContent row">
+            <div style={{
+                paddingBottom: '20px'
+            }} className="col-12 col-sm-12 col-md-12 col-lg-6">
                 {links.map(linkContent => linkContent.text === 'Product' ? (
                     <div style={{
                         marginTop: '13px',
@@ -31,11 +37,14 @@ const Footer = props => {
                         </div>
                     ))}
             </div>
-            <div className="footerColumn2">
+            <div style={{
+                textAlign: isMobile ? 'center' : 'initial'
+            }} className="col-12 col-sm-12 col-md-12 col-lg-6">
                 <div className="divider">
-                    <span className="officeAddress">Contact us</span>
-                    <div className="fullOfficeAdd">
-                        9176636367
+                    <span className="text-center">Contact us</span>
+                    <div className="text-center" dangerouslySetInnerHTML={{
+                        __html: addressDetails
+                    }} className="fullOfficeAdd">
                     </div>
                 </div>
             </div>

@@ -78,7 +78,6 @@ const ProductImageGallery = props => {
     }
 
     const buyNowWrapperClick = () => {
-        console.log(finalProductDetails, '=====')
         buyNowClick('checkout', finalProductDetails)
     }
     return (

@@ -291,10 +291,10 @@ const Cart = ({ homeClick, COD, ...other }) => {
                             </FormControl>
                             <hr className="my-4" />
                             <div className="text-center">
-                                <button type="button" className="btn btn-primary mb-2" onClick={(type, formData) => handleForm(type, formData)}>
+                                <button type="button" style={{ borderRadius: '5px' }} className="btn btn-info mb-2" onClick={(type, formData) => handleForm(type, formData)}>
                                     {currentButtonValue}
                                 </button>
-                                <button type="button" disabled={formDetails.length === 0} className="btn btn-secondary mb-2" onClick={orderConfirm}>
+                                <button type="button" style={{ borderRadius: '5px', marginLeft: '20px' }} disabled={formDetails.length === 0} className="btn btn-success mb-2" onClick={orderConfirm}>
                                     Checkout
                                 </button>
                                 {isForm ? <FormDialog updatedFormData={formDetails} handleForm={(type, formData) => handleForm(type, formData)} open={isForm} /> : null}

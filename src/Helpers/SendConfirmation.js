@@ -60,6 +60,36 @@ export const queryMessage = (name, email, number, message) => {
     })
 }
 
+export const sendMailAlone = (formDetails, totalCartProducts, inputQuantityValue, totalPrice, paymentMode, orderID) => {
+    return new Promise((res, rej) => {
+        fetch(`${process.env.GATSBY_BACKEND_API}/send-email-only`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                formDetails: formDetails,
+                totalCartProducts,
+                inputQuantityValue,
+                totalPrice,
+                paymentMode,
+                orderID,
+                currentTime: new Date().getHours() + ':' + new Date().getMinutes() + ':' + new Date().getSeconds(),
+                currentDate: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`
+            })
+        })
+            .then(data => data.json())
+            .then(body => {
+                if (body.status === 201) {
+                    res('success')
+                } else {
+                    res('error')
+                }
+            }).catch(err => {
+                rej(err)
+            })
+    })
+}
 export const paytmIntegration = (details, formDetails, totalCartProducts, inputQuantityValue, totalPrice, paymentMode, orderID) => {
     return new Promise((res, rej) => {
         fetch(`${process.env.GATSBY_BACKEND_API}/paynow`, {

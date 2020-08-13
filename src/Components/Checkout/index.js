@@ -13,7 +13,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 
 import CartProducts from './CartProducts';
 import FormDialog from '../AddressForm';
-import { sendPhoneMessage, paytmIntegration } from '../../Helpers/SendConfirmation';
+import { sendPhoneMessage, paytmIntegration, sendMailAlone } from '../../Helpers/SendConfirmation';
 import paytmSecureServerPost from '../../Helpers/PaytmIntegration';
 
 const useStyles = makeStyles((theme) => ({
@@ -136,85 +136,118 @@ const Cart = ({ homeClick, COD, ...other }) => {
     }
 
     const orderConfirm = () => {
-        if (radioValue === null) {
-            setApiResp({
-                alertMessage: 'error',
-                alertFlag: true,
-                alertText: 'Please select any of the payment method',
-            })
-            return
-        }
+        // if (radioValue === null) {
+        //     setApiResp({
+        //         alertMessage: 'error',
+        //         alertFlag: true,
+        //         alertText: 'Please select any of the payment method',
+        //     })
+        //     return
+        // }
         setIsSummary(!isSummary)
     }
 
     const handleSummaryForm = type => {
-        if (type === 'return') {
-            setIsSummary(false)
-            return
-        } else if (type === 'submit') {
-            setLoader(true)
-            if (radioValue && radioValue === 'COD') {
-                localStorage.removeItem('productInfo')
-                localStorage.removeItem('addressDetails')
-                const orderID = uuidv4()
-                sendPhoneMessage(formDetails, totalCartProducts, inputQuantityValue, totalPrice, radioValue, orderID).then(response => {
-                    setLoader(false)
-                    setApiResp({
-                        alertFlag: true,
-                        alertMessage: response,
-                        alertText: 'Order has been successfully placed!',
-                        alertBoldText: 'Check your mail inbox or spam!'
-                    })
-                }).catch(err => {
-                    setLoader(false)
-                    setApiResp({
-                        alertFlag: true,
-                        alertMessage: 'error',
-                        alertText: 'Sorry for the incovinience your order has not been placed!',
-                        alertBoldText: 'Please contact us through email or phone'
-                    })
-                })
-            } else if (radioValue === 'Card/NetBanking') {
-                const orderID = uuidv4()
-                let name = formDetails.filter(formDetail => formDetail.formName === 'Name' && formDetail.value)[0].value
-                let emailID = formDetails.filter(formDetail => formDetail.type === 'email' && formDetail.value)[0].value
-                let number = formDetails.filter(formDetail => formDetail.formName === 'Mobile_Number' && formDetail.value)[0].value
-                const params = {
-                    amount: `${totalPrice}.00`,
-                    customerId: `${name.split(' ').join('')}${(Math.random() * 10000000000000).toFixed(0)}`,
-                    orderId: uuidv4(),
-                    email: emailID,
-                    phone: `+91${number}`
-                }
-                paytmIntegration(params, formDetails, totalCartProducts, inputQuantityValue, totalPrice, radioValue, orderID).then(data => {
-                    setLoader(false)
-                    const securePayload = {
-                        action: `${process.env.GATSBY_PAYTMSECURE_API}mid=${data && data.body.mid}&orderId=${data && data.body.orderId}`,
-                        params: data && data.body
-                    }
-                    paytmSecureServerPost(securePayload)
-                    localStorage.removeItem('productInfo')
-                    localStorage.removeItem('addressDetails')
-                }).catch(err => {
-                    setLoader(false)
-                    setApiResp({
-                        alertFlag: true,
-                        alertMessage: 'error',
-                        alertText: 'Sorry for the incovinience your order has not been placed!',
-                        alertBoldText: 'Please contact us through email or phone'
-                    })
-                })
-
-            }
-        }
         setIsSummary(false)
+        setLoader(true)
+        const orderID = uuidv4()
+        localStorage.removeItem('productInfo')
+        localStorage.removeItem('addressDetails')
+        sendMailAlone(formDetails, totalCartProducts, inputQuantityValue, totalPrice, null, orderID).then(response => {
+            setLoader(false)
+            if (response === 'success') {
+                setApiResp({
+                    alertFlag: true,
+                    alertMessage: response,
+                    alertText: 'Order has been successfully placed!',
+                    alertBoldText: 'our team will contact you soon! mean while please check your inbox or spam for order details.'
+                })
+            } else {
+                setApiResp({
+                    alertFlag: true,
+                    alertMessage: response,
+                    alertText: 'Order has not been placed!',
+                    alertBoldText: 'Technical issue has happend while placing the order.'
+                })
+            }
+            setLoader(false)
+        }).catch(err => {
+            setApiResp({
+                alertFlag: true,
+                alertMessage: err.message || 'Internal server Error',
+                alertText: 'Order has not been placed!',
+                alertBoldText: 'Technical issue has happend while placing the order.'
+            })
+            setLoader(false)
+        })
+        // if (type === 'return') {
+        //     setIsSummary(false)
+        //     return
+        // } else if (type === 'submit') {
+        //     setLoader(true)
+        //     if (radioValue && radioValue === 'COD') {
+        //         localStorage.removeItem('productInfo')
+        //         localStorage.removeItem('addressDetails')
+        //         const orderID = uuidv4()
+        //         sendPhoneMessage(formDetails, totalCartProducts, inputQuantityValue, totalPrice, radioValue, orderID).then(response => {
+        //             setLoader(false)
+        //             setApiResp({
+        //                 alertFlag: true,
+        //                 alertMessage: response,
+        //                 alertText: 'Order has been successfully placed!',
+        //                 alertBoldText: 'Check your mail inbox or spam!'
+        //             })
+        //         }).catch(err => {
+        //             setLoader(false)
+        //             setApiResp({
+        //                 alertFlag: true,
+        //                 alertMessage: 'error',
+        //                 alertText: 'Sorry for the incovinience your order has not been placed!',
+        //                 alertBoldText: 'Please contact us through email or phone'
+        //             })
+        //         })
+        //     } else if (radioValue === 'Card/NetBanking') {
+        //         const orderID = uuidv4()
+        //         let name = formDetails.filter(formDetail => formDetail.formName === 'Name' && formDetail.value)[0].value
+        //         let emailID = formDetails.filter(formDetail => formDetail.type === 'email' && formDetail.value)[0].value
+        //         let number = formDetails.filter(formDetail => formDetail.formName === 'Mobile_Number' && formDetail.value)[0].value
+        //         const params = {
+        //             amount: `${totalPrice}.00`,
+        //             customerId: `${name.split(' ').join('')}${(Math.random() * 10000000000000).toFixed(0)}`,
+        //             orderId: uuidv4(),
+        //             email: emailID,
+        //             phone: `+91${number}`
+        //         }
+        //         paytmIntegration(params, formDetails, totalCartProducts, inputQuantityValue, totalPrice, radioValue, orderID).then(data => {
+        //             setLoader(false)
+        //             const securePayload = {
+        //                 action: `${process.env.GATSBY_PAYTMSECURE_API}mid=${data && data.body.mid}&orderId=${data && data.body.orderId}`,
+        //                 params: data && data.body
+        //             }
+        //             paytmSecureServerPost(securePayload)
+        //             localStorage.removeItem('productInfo')
+        //             localStorage.removeItem('addressDetails')
+        //         }).catch(err => {
+        //             setLoader(false)
+        //             setApiResp({
+        //                 alertFlag: true,
+        //                 alertMessage: 'error',
+        //                 alertText: 'Sorry for the incovinience your order has not been placed!',
+        //                 alertBoldText: 'Please contact us through email or phone'
+        //             })
+        //         })
+
+        //     }
+        // }
+        // setIsSummary(false)
     }
 
     const handleCloseAlert = () => {
-        if (radioValue !== null) {
-            homeClick('home')
-            return
-        }
+        homeClick('home')
+        // if (radioValue !== null) {
+        //     homeClick('home')
+        //     return
+        // }
         setApiResp({
             alertMessage: '',
             alertFlag: false,
@@ -243,7 +276,8 @@ const Cart = ({ homeClick, COD, ...other }) => {
                     <Dialog open={true} handleClose={handleCloseAlert}>
                         <Alert style={{ fontSize: '20px' }} severity={apiResp.alertMessage}>
                             <AlertTitle>{apiResp.alertMessage}</AlertTitle>
-                            {apiResp.alertText}<strong> {apiResp.alertBoldText}</strong>
+                            <br/>
+                            {apiResp.alertText}<strong><br/> {apiResp.alertBoldText}</strong>
                         </Alert>
                         <Button style={{ fontSize: '20px' }} onClick={handleCloseAlert}>close</Button>
                     </Dialog>
@@ -285,7 +319,7 @@ const Cart = ({ homeClick, COD, ...other }) => {
                             <FormControl component="fieldset">
                                 <FormLabel component="legend">Payment Mode</FormLabel>
                                 <RadioGroup name="PaymentMode" value={radioValue} onChange={changeRadioValue}>
-                                    <FormControlLabel value="Card/NetBanking" control={<Radio />} label="Card/NetBanking" />
+                                    <FormControlLabel value="Card/NetBanking" disabled={true} control={<Radio />} label="Card/NetBanking" />
                                     {COD && <FormControlLabel value="disabled" disabled={!COD} control={<Radio />} label="COD" />}
                                 </RadioGroup>
                             </FormControl>
